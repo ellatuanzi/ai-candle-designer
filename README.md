@@ -1,0 +1,245 @@
+# 🕯️ Candle Design Generator
+
+A Streamlit application that generates realistic, achievable candle design images using Google's Gemini 2.5 Flash Image API.
+
+## Features
+
+- 🎨 **AI-Powered Image Generation**: Creates actual candle design images using Gemini 2.5 Flash Image
+- �️ **Realistic Designs**: Generates practical, handmade candle designs that can be replicated
+- 📝 **Natural Language Input**: Simply describe your candle design in plain English
+- 🎭 **Style Keywords**: Add optional style keywords for refined results
+- 🔑 **Secure API Integration**: API key input via sidebar (not stored)
+- 💾 **Download Images**: Save generated candle designs as PNG files
+- 📋 **Prompt Transparency**: View the exact prompt used for generation
+
+## Setup
+
+### 1. Clone or Download
+
+```bash
+cd /path/to/candleMaker
+```
+
+### 2. Create Virtual Environment (Recommended)
+
+```bash
+python -m venv .venv
+source .venv/bin/activate  # On macOS/Linux
+# or
+.venv\Scripts\activate  # On Windows
+```
+
+### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Required packages:
+- `streamlit>=1.51.0`
+- `google-genai>=1.50.0`
+- `Pillow>=12.0.0`
+
+### 4. Get Gemini API Key
+
+1. Visit [Google AI Studio](https://aistudio.google.com/app/apikey)
+2. Sign in with your Google account
+3. Create a new API key
+4. Copy the API key
+
+### 5. Run the Application
+
+```bash
+streamlit run app.py
+```
+
+The app will open in your browser at `http://localhost:8501`
+
+## How to Use
+
+### Step-by-Step Guide
+
+1. **Enter API Key**: 
+   - Paste your Gemini API key in the sidebar
+   - The key is only stored in memory during your session
+
+2. **Describe Your Candle**: 
+   - Write a detailed description of the candle design you want
+   - Be specific about layers, colors, textures, and materials
+
+3. **Add Style Keywords** (Optional):
+   - Add keywords like "botanical", "gradient", "handmade", "rustic"
+   - Separate multiple keywords with commas
+
+4. **Generate**: 
+   - Click the "✨ Generate Candle Image" button
+   - Wait 5-15 seconds for the AI to create your design
+
+5. **Download**: 
+   - View your generated candle design
+   - Download it as a PNG file
+   - Check the prompt used in the expandable section
+
+## Example Prompts
+
+Try these detailed descriptions for best results:
+
+### Multi-Layer Candles
+```
+A multi-layer pillar candle, each layer a different natural wax color, 
+with dried flowers and herbs embedded realistically inside the wax. 
+Show clear layer boundaries so a candle maker can replicate the design.
+```
+
+### Botanical Candles
+```
+A handmade soy wax candle with real dried lavender flowers partially 
+embedded in the wax surface. Natural purple and cream gradient colors. 
+In a simple glass container with visible wax texture.
+```
+
+### Rustic Style
+```
+A beeswax candle with visible honeycomb texture and natural amber color. 
+Wrapped with natural jute twine and decorated with dried eucalyptus leaves. 
+Slightly uneven surface showing handmade quality.
+```
+
+### Geometric Modern
+```
+A modern concrete candle holder with minimalist design, containing 
+a smooth white soy wax candle. Clean lines, matte finish, professional 
+but achievable for DIY makers.
+```
+
+## Technical Details
+
+### Image Generation Process
+
+The app uses Google's **Gemini 2.5 Flash Image** model with streaming response:
+
+1. **Prompt Construction**: Combines user description with technical requirements
+2. **API Call**: Streams response from Gemini 2.5 Flash Image
+3. **Data Processing**: Extracts inline image data from response chunks
+4. **Image Validation**: Loads and validates the PIL Image object
+5. **Display**: Shows the generated image in the Streamlit interface
+
+### Key Implementation Features
+
+- **Streaming API**: Uses `generate_content_stream()` for real-time feedback
+- **Error Handling**: Comprehensive error messages for different failure modes
+- **Image Validation**: Forces image loading with `img.load()` to verify integrity
+- **Practical Prompting**: Emphasizes realistic, achievable candle designs
+
+## Project Structure
+
+```
+candleMaker/
+├── .venv/                  # Virtual environment (not in git)
+├── .gitignore             # Git ignore file
+├── app.py                 # Main Streamlit application
+├── requirements.txt       # Python dependencies
+└── README.md             # This file
+```
+
+## Tips for Best Results
+
+### Design Descriptions
+- ✅ Be specific about **materials** (soy wax, beeswax, paraffin)
+- ✅ Describe **layer structure** and boundaries clearly
+- ✅ Mention **realistic decorations** (embedded flowers, not floating)
+- ✅ Include **texture details** (smooth, honeycomb, slightly uneven)
+- ✅ Specify **achievable designs** that can be handmade
+
+### What Works Well
+- Multi-layer candles with clear boundaries
+- Natural wax colors and realistic textures
+- Embedded dried flowers or herbs
+- Handmade aesthetic with slight imperfections
+- Practical container suggestions
+
+### What to Avoid
+- ❌ Overly complex or impossible designs
+- ❌ Too many conflicting style elements
+- ❌ Vague descriptions like "make it pretty"
+- ❌ Unrealistic decorations (floating objects, perfect symmetry)
+
+## Troubleshooting
+
+### Common Issues
+
+**API Key Error**
+```
+❌ No API key provided.
+```
+**Solution**: Enter your Gemini API key in the sidebar
+
+**Empty Description Error**
+```
+❌ Please describe your candle design first.
+```
+**Solution**: Write a description in the text area before generating
+
+**Generation Failure**
+```
+Model did not return an image.
+```
+**Solution**: Try a simpler description or check your API quota
+
+**Image Loading Error**
+```
+cannot identify image file
+```
+**Solution**: This usually resolves on retry. The API occasionally returns incomplete data.
+
+## Environment Variables
+
+You can also set the API key as an environment variable:
+
+```bash
+export GEMINI_API_KEY="your-api-key-here"
+streamlit run app.py
+```
+
+## Requirements
+
+- **Python**: 3.8 or higher (tested on 3.12)
+- **Internet**: Required for API calls to Gemini
+- **API Access**: Valid Gemini API key with image generation enabled
+
+## API Costs
+
+Gemini 2.5 Flash Image is part of the Gemini API:
+- Check current pricing at [Google AI Pricing](https://ai.google.dev/pricing)
+- Free tier available for testing and development
+- Image generation counts towards your API quota
+
+## License
+
+MIT License - feel free to use, modify, and distribute!
+
+## Support & Resources
+
+- **Streamlit Documentation**: [docs.streamlit.io](https://docs.streamlit.io)
+- **Gemini API Docs**: [ai.google.dev/gemini-api/docs](https://ai.google.dev/gemini-api/docs)
+- **Image Generation Guide**: [ai.google.dev/gemini-api/docs/image-generation](https://ai.google.dev/gemini-api/docs/image-generation)
+- **Google AI Studio**: [aistudio.google.com](https://aistudio.google.com)
+
+## Contributing
+
+Contributions are welcome! Feel free to:
+- Report bugs or issues
+- Suggest new features
+- Submit pull requests
+- Share your generated candle designs
+
+## Acknowledgments
+
+- Built with [Streamlit](https://streamlit.io)
+- Powered by [Google Gemini 2.5 Flash Image](https://ai.google.dev)
+- Image processing with [Pillow](https://python-pillow.org)
+
+---
+
+**Made with ❤️ for candle makers and designers**
+
