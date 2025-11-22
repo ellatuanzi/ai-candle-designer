@@ -126,12 +126,8 @@ ai-candle-designer/
 
 ### Street View Candle Wrap Examples
 
-#### Urban Architecture Wrap
+#### Forbidden City Wrap
 <img src="image_example/gemini_candle_wrap (1).png" alt="Street View candle wrap with urban architecture" width="400"/>
-
-**Location:** Times Square, New York City  
-**Coordinates:** 40.758, -73.9855  
-**Prompt:** Transform this Times Square panorama into an artistic watercolor painting with vibrant colors and dreamy atmosphere. Emphasize the iconic buildings and billboards with soft, blended brushstrokes.
 
 ---
 
